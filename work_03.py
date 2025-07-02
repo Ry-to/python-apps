@@ -19,7 +19,9 @@ meisan_key = list(meisan.keys())
 meisan_value = list(meisan.values())
 soumondai = 0
 seikai = 0
-M = 1
+matigai = 0
+M = 0
+li2 = []
 li = []
 print("!全国名産品都道府県当てクイズ!")
 print("明産物を表示するのでどの都道府県のものかを当ててね")
@@ -30,9 +32,13 @@ while True:
         seikairitu_round = round(seikairitu,2)
         print(f"正解率は{seikairitu_round}%でした")
         print("間違えた問題")
-        for item,val in li:
-            print(f"{M}問目:{item} → 正解:{val}")
-            M += 1
+        if matigai == 0:
+            print("ありません")
+        else:
+            for item,val in li:
+                print(f"{li2[M]}問目")
+                print(f"{item} → 正解:{val}")
+                M += 1
         print("問題をすべて解きました！")
         print("ありがとうございました")
         break
@@ -49,9 +55,13 @@ while True:
                 print("【結果】")
                 print(f"正解率は{seikairitu_round}%でした")
                 print("間違えた問題")
-                for item,val in li:
-                    print(f"{M}問目:{item} → 正解:{val}")
-                    M += 1
+                if matigai == 0:
+                    print("ありません")
+                else:
+                    for item,val in li:
+                        print(f"{li2[M]}問目")
+                        print(f"{item} → 正解:{val}")
+                        M += 1
                 print("ありがとうございました")
                 break
         else:
@@ -61,6 +71,8 @@ while True:
                 seikai += 1
             else:
                 print("不正解")
+                li2.append(soumondai)
+                matigai += 1
                 li.append((meisan_key[mondai],meisan_value[mondai]))
             del meisan_key[mondai]
             del meisan_value[mondai]
